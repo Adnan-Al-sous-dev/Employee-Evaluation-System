@@ -1,53 +1,28 @@
-class Employee {
-    constructor() {
-        this.users = [
-            { id: 1, name: "John Doe", department: "----" , salary: 1 , hairDate:"yyyy/mm/dd" , averageRating : 1  }
-        ];
-        this.nextId = 4;
+
+import mongoose from "mongoose";
+
+const employeeSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    department: { type: String, required: true },
+    hireDate: { type: Date, required: true },
+    salary: { type: Number, required: true }
+});
+
+employeeSchema.virtual('serviceDuration').get(function () {
+    if (!this.hireDate) return '';
+    const currentDate = new Date();
+    const hireDate = new Date(this.hireDate);
+    let years = currentDate.getFullYear() - hireDate.getFullYear();
+    let months = currentDate.getMonth() - hireDate.getMonth();
+
+    if (months < 0) {
+        years--;
+        months += 12;
     }
+    return `${years} years and ${months} months`;
+});
 
-    // findAll() {
-    //     return this.users;
-    // }
+employeeSchema.set('toJSON', { virtuals: true });
+employeeSchema.set('toObject', { virtuals: true });
 
-    // findById(id) {
-    //     // const index = this.users.findIndex((user) => {
-    //     //     return user.id === parseInt(id);
-    //     // });
-    //     // if (index !== -1) {
-    //     //     return this.users[index];
-    //     // }
-    //     // return id;
-    //     return this.users.find((user) => { return user.id === parseInt(id) });
-    // }
-
-    // create(Obj) {
-    //     const user = { id: this.nextId++, ...Obj };
-    //     this.users.push(user);
-    //     return user;
-    // }
-
-    // deleteById(id) {
-    //     const index = this.users.findIndex((user) => {
-    //         return user.id === parseInt(id);
-    //     });
-    //     if (index !== -1) {
-    //         const deletedUser = this.users.splice(index, 1)[0];
-    //         return deletedUser;
-    //     }
-    // }
-
-    // updateById(id, updatedUser) {
-    //     const index = this.users.findIndex((user) => {
-    //         return user.id === parseInt(id);
-    //     });
-    //     if (index !== -1) {
-    //         this.users[index] = { ...this.users[index], ...updatedUser };
-    //         return this.users[index];
-    //     }
-    // }
-
-    
-}
-
-export default new Employee();
+export default mongoose.model('Employee', employeeSchema);
