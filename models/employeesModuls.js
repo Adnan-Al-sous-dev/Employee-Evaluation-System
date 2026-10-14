@@ -1,4 +1,4 @@
-class Empooyee {
+class Employee {
     constructor() {
         this.users = [
             { id: 1, name: "John Doe", department: "----" , salary: 1 , hairDate:"yyyy/mm/dd" , averageRating : 1  }
@@ -50,4 +50,4 @@ class Empooyee {
     
 }
 
-export default new User();
+export default new Employee();

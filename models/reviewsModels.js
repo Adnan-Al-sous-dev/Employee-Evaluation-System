@@ -1,53 +1,54 @@
 class Review {
     constructor() {
-        this.users = [
-            { empdyeeId: 1, reviewqMonth: "John Doe", rating: 1 , notse:"---" , evaluatorName:"----" },
+        this.reviews = [
+            // rating: 1 - 5
+            { employeeId: 1, reviewMonth: "yyyy-MM", rating: 1, notes: "---", evaluatorName: "Name" },
         ];
         this.nextId = 4;
     }
 
-    // findAll() {
-    //     return this.users;
-    // }
 
-    // findById(id) {
-    //     // const index = this.users.findIndex((user) => {
-    //     //     return user.id === parseInt(id);
-    //     // });
-    //     // if (index !== -1) {
-    //     //     return this.users[index];
-    //     // }
-    //     // return id;
-    //     return this.users.find((user) => { return user.id === parseInt(id) });
-    // }
 
-    // create(Obj) {
-    //     const user = { id: this.nextId++, ...Obj };
-    //     this.users.push(user);
-    //     return user;
-    // }
+        findAll() {
+            return this.reviews;
+        }
 
-    // deleteById(id) {
-    //     const index = this.users.findIndex((user) => {
-    //         return user.id === parseInt(id);
-    //     });
-    //     if (index !== -1) {
-    //         const deletedUser = this.users.splice(index, 1)[0];
-    //         return deletedUser;
-    //     }
-    // }
+        findById(id) {
+            // const index = this.reviews.findIndex((review) => {
+            //     return review.id === parseInt(id);
+            // });
+            // if (index !== -1) {
+            //     return this.reviews[index];
+            // }
+            // return id;
+            return this.reviews.find((review) => { return review.id === parseInt(id) });
+        }
 
-    // updateById(id, updatedUser) {
-    //     const index = this.users.findIndex((user) => {
-    //         return user.id === parseInt(id);
-    //     });
-    //     if (index !== -1) {
-    //         this.users[index] = { ...this.users[index], ...updatedUser };
-    //         return this.users[index];
-    //     }
-    // }
+        create(Obj) {
+            const review = { id: this.nextId++, ...Obj };
+            this.reviews.push(review);
+            return review;
+        }
 
-    
+        deleteById(id) {
+            const index = this.reviews.findIndex((review) => {
+                return review.id === parseInt(id);
+            });
+            if (index !== -1) {
+                const deletedReview = this.reviews.splice(index, 1)[0];
+                return deletedReview;
+            }
+        }
+
+        updateById(id, updatedUser) {
+            const index = this.reviews.findIndex((review) => {
+                return review.id === parseInt(id);
+            });
+            if (index !== -1) {
+                this.reviews[index] = { ...this.reviews[index], ...updatedUser };
+                return this.reviews[index];
+            }
+        }    
 }
 
-export default new User();
+export default new Review();
